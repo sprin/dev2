@@ -5,4 +5,16 @@ class flask_packages {
   package { "libevent.x86_64":
     ensure => "installed"
   }
+
+  yumrepo { "springdale":
+    baseurl => "http://springdale.math.ias.edu/data/puias/computational/6Server/x86_64/",
+    descr => "Springdale Linux Server 6 x86_64",
+    enabled => 1,
+    gpgcheck => 0
+  }
+
+  package {"python27":
+    ensure => "installed",
+    require => Yumrepo["springdale"]
+  }
 }
