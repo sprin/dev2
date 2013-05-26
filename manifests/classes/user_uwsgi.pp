@@ -8,6 +8,8 @@ class user_uwsgi {
 
   file { "/home/uwsgi/virtualenvs":
     ensure => "directory",
+    owner => "uwsgi",
     require => User["uwsgi"],
   }
 }
+
