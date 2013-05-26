@@ -11,5 +11,20 @@ class user_uwsgi {
     owner => "uwsgi",
     require => User["uwsgi"],
   }
+
+  # Give the uwsgi a default db. To be used as sandbox db.
+  postgresql::db { 'uwsgi':
+    user     => 'uwsgi',
+    password => 'uwsgi',
+    grant    => 'all',
+  }
+
+  postgresql::database_user{"uwsgi":
+    require => [
+      User["uwsgi"],
+      Class["postgresql::server"],
+    ]
+  }
+
 }
 
