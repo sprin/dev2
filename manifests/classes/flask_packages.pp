@@ -17,4 +17,9 @@ class flask_packages {
     ensure => "installed",
     require => Yumrepo["springdale"]
   }
+
+  package {"python3":
+    ensure => "installed",
+    require => Yumrepo["springdale"]
+  }
 }
