@@ -1,1 +1,1 @@
-mount -t vboxsf hosthome /media/hosthome
+mount -t vboxsf -o rw,uid=`id -u uwsgi`,gid=`id -g uwsgi` hosthome /media/hosthome
