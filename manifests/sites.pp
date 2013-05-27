@@ -10,6 +10,11 @@ node default {
   file {"/etc/profile.d/postgresql.sh":
     content => template("/etc/puppet/templates/postgresql.erb"),
   }
+
+  # Make sure MacOS share is mounted
+  file {"/etc/profile.d/vbox-mount.sh":
+    content => template("/etc/puppet/templates/vbox-mount.erb"),
+  }
   
   package {"man":
     ensure => "installed",
@@ -18,5 +23,7 @@ node default {
   include user_uwsgi
   include postgres_packages
   include flask_packages
+  # Apps
+  include drilldown_demo
 }
 
