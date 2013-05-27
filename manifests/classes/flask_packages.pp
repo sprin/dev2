@@ -1,9 +1,5 @@
 class flask_packages {
 
-  class { "python::dev":
-    version => "2.7",
-  }
-
   class { "python::venv":
     owner => "uwsgi",
   }
@@ -42,9 +38,5 @@ class flask_packages {
     require => Yumrepo["springdale"]
   }
 
-  python::venv::isolate {
-    "/home/uwsgi/virtualenvs/drilldown_demo":
-      version => "2.7",
-  }
 }
 
