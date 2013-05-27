@@ -20,6 +20,27 @@ node default {
     ensure => "installed",
   }
 
+  # Purge unmanaged firewall resources.
+  resources { "firewall":
+    purge => true
+  }
+
+  Firewall {
+    before  => Class['post'],
+    require => Class['pre'],
+  }
+
+  class { ['pre', 'post']: }
+
+  class { 'firewall': }
+
+  firewall { '200 allow ssh access':
+    port   => [22],
+    proto  => tcp,
+    action => accept,
+  }
+
+
   include user_uwsgi
   include postgres_packages
   include flask_packages

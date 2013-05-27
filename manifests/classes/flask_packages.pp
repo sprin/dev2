@@ -42,5 +42,12 @@ class flask_packages {
     require => Yumrepo["springdale"]
   }
 
+  # Firewall config for flask apps running on port 8000
+  firewall { '100 allow http access':
+    port   => [8000],
+    proto  => tcp,
+    action => accept,
+  }
+
 }
 
